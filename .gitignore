@@ -30,6 +30,7 @@ testem.log
 #include
 !index.js
 !service-worker.js
+!./src/service-worker.js
 !/typings
 
 # js/map
