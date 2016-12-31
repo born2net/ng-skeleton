@@ -1,4 +1,4 @@
-ng-boiler
+ng-skeleton
 =====================
 
 Starter project for Angular   
