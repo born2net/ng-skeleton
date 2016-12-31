@@ -1,0 +1,16 @@
+button {
+    width: 33.3%;
+}
+.btn-small i {
+    position: relative;
+    top: -2px;
+    left: -5px;
+}
+.btn-small {
+    width: 25px;
+    height: 25px;
+    padding-right: 5px;
+}
+li {
+    font-size: 0.9em;
+}

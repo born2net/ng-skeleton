@@ -1,0 +1,249 @@
+<br/>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h2>Enterprise edition: $99 a month</h2>
+    <h6>unlimited accounts, unlimited screens, unlimited components, unlimited bandwidth, unlimited storage, unlimited advertisers, unlimited SignagePlayers, unlimited campaigns, unlimited users, unlimited business, unlimited branding, unlimited... everything!</h6>
+    <hr/>
+	 keep me posted on news, events and product introductions
+	 <div style="padding-top: 10px" class="material-switch pull-right">
+		<input id="emailUpdatesNews" checked name="someSwitchOption001" type="checkbox"/>
+		<label for="emailUpdatesNews" class="label-primary"></label>
+	 </div>
+
+	 <hr/>
+    <div>
+      <div class="pull-left">
+        <h3>Enterprise edition status</h3>
+        <label *ngIf="getRecurringValue('paymentStatus')">all is good, last successful payment completed on {{getRecurringValue('lastPayment')}}</label>
+        <label style="color: red" *ngIf="!getRecurringValue('paymentStatus')">account inactive your payment failed on {{getRecurringValue('lastPayment')}}</label>
+      </div>
+
+      <div *ngIf="getRecurringValue('paymentStatus')">
+        <span style="font-size: 4em; padding-right: 60px; padding-top: 20px; color: green" class="fa fa-check-circle pull-right"></span>
+      </div>
+      <span *ngIf="!getRecurringValue('paymentStatus')" style="font-size: 4em; padding-right: 60px; padding-top: 20px; color: red" class="fa fa-minus-circle pull-right"></span>
+      <div class="clearfix"></div>
+      <div *ngIf="!getRecurringValue('paymentStatus')">
+      </div>
+    </div>
+    <hr/>
+    <div>
+      <div *ngIf="getRecurringValue('recurringMode') != 'ANNUAL'" class="pull-left">
+        <h3>Manage your subscription</h3>
+        <label *ngIf="isAccountActive()">choose between credit card or paypal</label>
+        <label style="color: red" *ngIf="!isAccountActive()">account inactive avoid interruption & update billing info</label>
+      </div>
+      <div *ngIf="getRecurringValue('recurringMode') != 'ANNUAL'">
+        <select (change)="onPaymentChanged($event)" style="width: 200px; margin-top: 20px; font-size: 1.3em" class="form-control pull-right">
+          <option *ngFor="let item of payments" [selected]="getSelectedPayment(item)">{{item.name}}</option>
+        </select>
+      </div>
+      <hr/>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <!--<center>-->
+            <img *ngFor="let card of cards" [ngClass]="{faded: !isCardSelected(card)}" style="padding: 5px" [src]="'assets/'+card+'.png'">
+          <!--</center>-->
+        </h3>
+      </div>
+      <div class="panel-body">
+        <form [formGroup]="contGroup" (ngSubmit)="onSubmit(contGroup.value)">
+          <tabs>
+            <tab [tabtitle]="'Payment'">
+              <div *ngIf="getRecurringValue('recurringMode') == '0'" role="form">
+                <br/>
+                <br/>
+                <!--<center>-->
+                  <h1 style="color: red">Account is inactive</h1>
+                  <h5>to reactivate update your payment method</h5>
+                  <br/>
+                  <br/>
+                <!--</center>-->
+              </div>
+              <div *ngIf="getRecurringValue('recurringMode') == 'ANNUAL'" role="form">
+                <br/>
+                <br/>
+                <!--<center>-->
+                  <h1 style="color: green">Annual payer</h1>
+                  <br/>
+                  <br/>
+                <!--</center>-->
+              </div>
+              <div *ngIf="getRecurringValue('recurringMode') == '2'" role="form">
+                <!--<center>-->
+                  <br/>
+                  <br/>
+                  <button (click)="onPaypalConnect()" class="btn btn-danger" style="padding: 10px 30px 10px 30px; font-size: 2em">Connect to Paypal
+                    <span class="fa fa-paypal"></span>
+                  </button>
+                  <br/>
+                  <br/>
+                <!--</center>-->
+              </div>
+              <div *ngIf="getRecurringValue('recurringMode') == '1'" role="form" id="payment-form">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="form-group">
+                      <label for="cardNumber">CARD NUMBER</label>
+                      <div class="input-group">
+                        <input id="upgCredit" [formControl]="contGroup.controls['billing_cardNumber']" type="text" class="ccNumber form-control" name="cardNumber" placeholder="Valid Card Number" autofocus data-stripe="number"/>
+                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-7 col-md-7">
+                    <div class="form-group">
+
+                      <div class="col-xs-6 col-lg-6 pl-ziro">
+                        <input id="upgMonth" [formControl]="contGroup.controls['billing_expirationMonth']" type="text" class="form-control" name="expMonth" placeholder="MM" data-stripe="exp_month"/>
+                      </div>
+                      <div class="col-xs-6 col-lg-6 pl-ziro">
+                        <input id="upgYear" [formControl]="contGroup.controls['billing_expirationYear']" type="text" class="form-control" name="expYear" placeholder="YYYY" data-stripe="exp_year"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-5 col-md-5 pull-right">
+                    <div class="form-group">
+                      <input id="upgCV" [formControl]="contGroup.controls['billing_securityCode']" class="form-control" name="cvCode" placeholder="CV" data-stripe="cvc"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button (click)="onUpdateCreditCard($event)" class="startUpgrade btn btn-success btn-lg btn-block" type="submit">update credit card</button>
+                    <br/>
+                    <!--<label>Updating the credit will result in a one time $1.00 test charge</label>-->
+                  </div>
+                </div>
+                <div class="row" style="display:none;">
+                  <div class="col-xs-12">
+                    <p class="payment-errors"></p>
+                  </div>
+                </div>
+              </div>
+            </tab>
+            <tab [tabtitle]="'Credentials'">
+              <div class="form-group">
+                <InputEdit [style]="stylesObj" [editable]="true" (labelEdited)="onCompanyNameEdited($event)" [value]="companyName"></InputEdit>
+                <hr/>
+                <h4>Login: {{userName}}</h4>
+                <h4>Pass: ************</h4>
+                <hr/>
+                <h5>Enterprise id: {{businessId}}</h5>
+                <h5>Payer id: {{payerId}}</h5>
+              </div>
+            </tab>
+            <tab [tabtitle]="'Billing'">
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_firstName']" type="text" class="form-control" placeholder="first name">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_lastName']" type="text" class="form-control" placeholder="last name">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_address1']" type="text" class="form-control" placeholder="address1">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_address2']" type="text" class="form-control" placeholder="address2">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_city']" type="text" class="form-control" placeholder="city">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_state']" type="text" class="form-control" placeholder="state">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_country']" type="text" class="form-control" placeholder="country">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_zipCode']" type="text" class="form-control" placeholder="zip">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_workPhone']" type="text" class="form-control" placeholder="work phone">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_cellPhone']" type="text" class="form-control" placeholder="cell phone">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['billing_email']" type="text" class="form-control" placeholder="email">
+              </div>
+            </tab>
+            <tab [tabtitle]="'Shipping'">
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_firstName']" type="text" class="form-control" placeholder="first name">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_lastName']" type="text" class="form-control" placeholder="last name">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_address1']" type="text" class="form-control" placeholder="address1">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_address2']" type="text" class="form-control" placeholder="address2">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_city']" type="text" class="form-control" placeholder="city">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_state']" type="text" class="form-control" placeholder="state">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_country']" type="text" class="form-control" placeholder="country">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_zipCode']" type="text" class="form-control" placeholder="zip">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_workPhone']" type="text" class="form-control" placeholder="work phone">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_cellPhone']" type="text" class="form-control" placeholder="cell phone">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['shipping_email']" type="text" class="form-control" placeholder="email">
+              </div>
+            </tab>
+            <tab [tabtitle]="'Contact'">
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_firstName']" type="text" class="form-control" placeholder="first name">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_lastName']" type="text" class="form-control" placeholder="last name">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_address1']" type="text" class="form-control" placeholder="address1">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_city']" type="text" class="form-control" placeholder="city">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_state']" type="text" class="form-control" placeholder="state / country">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_zipCode']" type="text" class="form-control" placeholder="zip">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_workPhone']" type="text" class="form-control" placeholder="work phone">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_cellPhone']" type="text" class="form-control" placeholder="cell phone">
+              </div>
+              <div class="form-group">
+                <input [formControl]="contGroup.controls['contact_email']" type="text" class="form-control" placeholder="email">
+              </div>
+            </tab>
+            <tab [tabtitle]="'Auth'">
+            
+            </tab>
+          </tabs>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

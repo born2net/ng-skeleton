@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="fill_scroll">
+    <div class="row">
+      <div class="col-md-10">
+        <br/>
+        <div class="input-group">
+          <input type="text" (keydown.control.a)="itemAllSelected()" name="SearchDualList"
+                 class="form-control" [(ngModel)]="filter" placeholder="filter list"/>
+          <span class="input-group-addon fa fa-search"></span>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group">
+      <br/>
+      <li #simpleItem *ngFor="let item of list ; let index = index"
+          [class.hidden]="item | FilterPipe:filter:content"
+          data-id="simple_id:{{getContentId(item,index)}}"
+          class="list-group-item" (click)="itemSelected(item, index)" [class.active]="getMetadata(index,item).selected">
+
+          <!--(mouseover)="hover.next(item)" (mouseout)="hover.next(null)">-->
+          <!-- {{getContent(item) | json}} -->
+          <!--<span *ngIf="!m_editing" class="li-content pull-left">{{getContent(item)}}</span>-->
+
+        <span *ngIf="m_icon || m_iconCallback" class="pull-right">
+          <button (click)="onIconClick($event, index)" style="padding: 0; margin: 0" class="pull-right btn fa {{renderIcon(index, item)}}"></button>
+        </span>
+        <simplelistEditable (editChange)="onEditChanged($event)" [item]="item" [content]="content" [editable]="editable"></simplelistEditable>
+      </li>
+    </ul>
+  </div>
+</div>

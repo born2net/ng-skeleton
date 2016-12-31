@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="assets/images/icons/icon-72x72.png">
+    <link rel="manifest" href="./manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#333333">
+    <meta name="description" content="DigitalSignage.com FREE Digital Signage for everyone. StudioDashboard, an open source Angular based Enterprise Studio">
+    <meta name="keywords" content="Digital Signage, Kiosk, Digital Kiosk">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-36671151-9', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <style>
+        #loading {
+            padding-top: 130px;
+        }
+        .spinner {
+            display: inline-block;
+            opacity: 1;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            border-top-color: rgba(0,0,0,.3);
+            animation: spin 1s ease-in-out infinite;
+            -webkit-animation: spin 1.5s ease-in-out infinite;
+            height: 50px;
+            width: 50px;
+        }
+        @keyframes spin {
+            to { -webkit-transform: rotate(360deg); }
+        }
+        @-webkit-keyframes spin {
+            to { -webkit-transform: rotate(360deg); }
+        }
+        .centerSpinner {
+            text-align: center
+        }
+    </style>
+
+</head>
+<body>
+<app-root>
+    <div id="loading">
+        <div class="centerSpinner spinner"></div>
+        <!--<img id="appLoader" src="assets/loading.svg" alt="Loading icon"/>-->
+    </div>
+</app-root>
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
+            console.log('Service Worker registered');
+        }).catch(function(err) {
+            console.log('Service Worker registration failed: ', err);
+        });
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+<!--<!doctype html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title>StudioDashboard</title>-->
+    <!--<base href="/">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <!--<link rel="icon" type="image/x-icon" href="favicon.ico">-->
+<!--</head>-->
+<!--<style>-->
+    <!--#loading {-->
+        <!--padding-top: 130px;-->
+    <!--}-->
+    <!--.spinner {-->
+        <!--display: inline-block;-->
+        <!--opacity: 1;-->
+        <!--border: 3px solid #fff;-->
+        <!--border-radius: 50%;-->
+        <!--border-top-color: rgba(0,0,0,.3);-->
+        <!--animation: spin 1s ease-in-out infinite;-->
+        <!-- -webkit-animation: spin 1.5s ease-in-out infinite;-->
+        <!--height: 50px;-->
+        <!--width: 50px;-->
+    <!--}-->
+    <!--@keyframes spin {-->
+        <!--to { -webkit-transform: rotate(360deg); }-->
+    <!--}-->
+    <!--@-webkit-keyframes spin {-->
+        <!--to { -webkit-transform: rotate(360deg); }-->
+    <!--}-->
+    <!--.centerSpinner {-->
+        <!--text-align: center-->
+    <!--}-->
+<!--</style>-->
+<!--<body>-->
+<!--<app-root>-->
+    <!--<div id="loading">-->
+        <!--<div class="centerSpinner spinner"></div>-->
+        <!--&lt;!&ndash;<img id="appLoader" src="assets/loading.svg" alt="Loading icon"/>&ndash;&gt;-->
+    <!--</div>-->
+<!--</app-root>-->
+<!--</body>-->
+<!--</html>-->

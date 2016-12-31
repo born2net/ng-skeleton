@@ -1,0 +1,55 @@
+* {
+    border-radius: 0 !important;
+}
+
+.editable {
+    opacity: 0.7;
+    font-size: 1.1em;
+    padding-top: 14px;
+    padding-right: 5px;
+}
+
+.btn {
+    height: 40px;
+    width: 35px;
+    color: white;
+    background-color: #454545;
+}
+.list-group {
+    padding-right: 15px;
+}
+.dual-list .list-group {
+    margin-top: 8px;
+}
+
+li {
+    cursor: hand;
+    padding: 0;
+    margin: 0;
+    overflow: hidden !important;
+    white-space: nowrap;
+    height: 40px;
+    max-height: 40px;
+}
+
+.li-content {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 70%;
+    top: 8px;
+    left: 3px;
+    overflow: hidden !important;
+    white-space: nowrap;
+}
+.list-arrows {
+    padding-top: 100px;
+}
+
+.list-arrows button {
+    margin-bottom: 20px;
+}
+
+input {
+    color: black;
+}

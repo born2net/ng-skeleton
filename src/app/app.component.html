@@ -1,0 +1,97 @@
+<div id="domRoot">
+    <div id="headerPad"></div>
+    <nav id="fileMenu" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <span id="angularText">
+        StudioDashboard
+        <Logo></Logo>
+        <label style="font-size: 10px; color: darkgray">{{version}} | ng {{ngVersion}}</label>
+      </span>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ng-menu [routePrefix]="'App1'" [fileMenuMode]="false">
+                <ng-menu-item [fontawesome]="'fa-dashboard'" [title]="'Dashboard'"></ng-menu-item>
+                <ng-menu-item [fontawesome]="'fa-lock'" [title]="'Privileges'"></ng-menu-item>
+                <ng-menu-item [fontawesome]="'fa-cog'" [title]="'Account'"></ng-menu-item>
+                <ng-menu-item [fontawesome]="'fa-shopping-cart'" [title]="'Orders'"></ng-menu-item>
+                <ng-menu-item [fontawesome]="'fa-power-off'" [title]="'Logout'"></ng-menu-item>
+            </ng-menu>
+        </div>
+    </nav>
+    <div id="appEntry">
+
+        <router-outlet></router-outlet>
+
+        <div id="waitScreenEntryApp" style="display: none">
+            <span style="position: absolute; left: 45%; top: 20%"> <img src="./assets/preload5.gif"> </span>
+        </div>
+        <div id="appLogout" style="display: none"> <span style="position: absolute; left: 40%; top: 20%">
+      <h3 data-localize="haveNiceDay">Have a nice day :)</h3>
+      </span>
+        </div>
+        <div id="appSelector" class="noScroll container" style="display: none">
+            <div align="center" style="padding-top: 100px">
+                <button type="button" name="mailWasp" class="btn btn-default">
+                    <i style="margin: 20px; padding: 20px; font-size: 5em" class="fa fa-envelope"></i>
+                    <span data-localize="none"></span>
+                </button>
+                <button type="button" name="everNodes" class="btn btn-default">
+                    <i style="margin: 20px; padding: 20px ; font-size: 5em" class="fa fa-sitemap"></i>
+                    <span data-localize="none"></span>
+                </button>
+            </div>
+        </div>
+        <div id="appMailWaspContent" class="noScroll container" style="display: none"></div>
+        <div id="appEverNodesContent" class="noScroll container" style="display: none"></div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal modal-static fade" id="bsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button id="toggleProperties" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel" data-localize="ModalTitle">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <h3 data-localize="someContent">some content</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-localize="close">Close</button>
+                <button type="button" class="btn btn-primary" data-localize="saveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="popModal" style="display: none"></div>
+<div id="popupProperties" style="display: none">
+    <button style="float: right; margin: 20px" type="button" class="btn btn-default btn-sm modal_close" data-dismiss="modal">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+</div>
+<div id="aboutUS" style="display: none">
+    <h1 data-localize="aboutUs">StackView Rocks, this is a sample StackView Popup</h1>
+    <button type="button" class="btn btn-primary modal_close" data-dismiss="modal" data-localize="colse">Close</button>
+</div>
+<div id="languageSelector" class="dropdownlang" style="display: none">
+    <dt>
+        <a href="#"><span>Select language</span></a>
+    </dt>
+    <dd>
+        <ul>
+            <li>
+                <a href="#"><img class="flag" src="assets/us.png" alt=""/>United States<span class="value">en</span></a>
+            </li>
+        </ul>
+    </dd>
+    <small>Let us know if you wish to help us add your native language</small>
+</div>
+<div id="stackWaitModalView" style="display: none"></div>
