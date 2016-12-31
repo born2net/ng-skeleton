@@ -39,6 +39,7 @@ install
 git clone https://github.com/born2net/ng-skeleton.git
 cd ng-skeleton
 npm install
+open browser: http://localhost:4203
 ```
 
 related projects:
