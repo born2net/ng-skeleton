@@ -1,13 +1,22 @@
 ng-skeleton
 =====================
 
-Starter project for Angular   
+the ultimate angular seed project   
 ----------------
+
+Technologies
+------------
+- angular-cli
+- angular router
+- ng-bootstrap (responsive, scale browser to checkout navigation) 
+- ngrx
+
 
 Features:
 ----------
- - angular-cli
- - bootstrap
- - redux
- - user authentication
- - application layout
+- login / logout 
+- two factor authentication support
+- slider component
+- navigation component
+- menu component
+- npm scripts
