@@ -10,6 +10,11 @@ the ultimate angular seed project
 
 technologies
 ------------
+demo: https://secure.digitalsignage.com/skeleton/
+
+
+technologies
+------------
 - angular-cli
 - angular router
 - ng-bootstrap (responsive, scale browser to checkout navigation) 
