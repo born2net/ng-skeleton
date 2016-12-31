@@ -33,11 +33,6 @@ export class AppComponent {
 
         // this.localStorage.removeItem('remember_me')
         // this.localStorage.removeItem('business_id')
-        // this.localStorage.setItem('remember_me', {
-        //     u: 'aa',
-        //     p: 'bb',
-        //     r: true
-        // });
 
         this.checkPlatform();
         this.toastr.setRootViewContainerRef(vRef);
