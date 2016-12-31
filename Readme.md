@@ -30,9 +30,11 @@ features:
 
 install
 -----------
-```git clone https://github.com/born2net/ng-skeleton.git```
-```cd ng-skeleton```
-```npm install```
+```
+git clone https://github.com/born2net/ng-skeleton.git
+cd ng-skeleton
+npm install
+```
 
 related references:
 -----------
