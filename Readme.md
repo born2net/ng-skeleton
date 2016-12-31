@@ -8,9 +8,9 @@ the ultimate angular seed project
   <img src="http://www.digitalsignage.com/_images/ngskeleton.png">
 </p>
 
-technologies
+demo
 ------------
-demo: https://secure.digitalsignage.com/skeleton/
+working app: https://secure.digitalsignage.com/skeleton/
 
 
 technologies
