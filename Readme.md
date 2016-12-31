@@ -18,7 +18,7 @@ technologies
 - angular-cli
 - angular router
 - ng-bootstrap (responsive, scale browser to checkout navigation) 
-- ngrx
+- ngrx + effects
 - progressive web app (add to mobile home screen)
 - ng-prime
 - lots of components included
