@@ -28,6 +28,12 @@ features:
 - menu component
 - npm scripts
 
+install
+-----------
+```git clone https://github.com/born2net/ng-skeleton.git```
+```cd ng-skeleton```
+```npm install```
+
 related references:
 -----------
 - Angular kitchen sink: https://github.com/born2net/Angular-kitchen-sink
@@ -35,6 +41,6 @@ related references:
 
 videos:
 --------
-for the ultimate store solution for angular2 watch:
+learn how to use a typed redux / ngrx store:
 
 [![The Ultimate redux typed store implementation for angular](http://img.youtube.com/vi/bEkPEnudm7s/0.jpg)](https://www.youtube.com/watch?v=bEkPEnudm7s&feature=youtu.be "The Ultimate redux typed store implementation for angular")
