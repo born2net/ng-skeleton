@@ -5,7 +5,7 @@ the ultimate angular seed project
 ----------------
 
 <p align="center">  
-  <img src="http://www.digitalsignage.com/_images/kitchensinklogo.png">
+  <img src="http://www.digitalsignage.com/_images/ngskeleton.png">
 </p>
 
 technologies
