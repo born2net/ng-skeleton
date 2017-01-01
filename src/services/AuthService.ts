@@ -9,18 +9,16 @@ import {Ngmslib} from "ng-mslib";
 import * as _ from "lodash";
 import {Store} from "@ngrx/store";
 import {ApplicationState} from "../store/application-state";
-import {AppdbAction, AuthenticateFlags} from "../store/actions/app-db-actions";
+import {AuthenticateFlags} from "../store/actions/app-db-actions";
 import {UserModel} from "../models/UserModel";
 import {EFFECT_AUTH_START, EFFECT_TWO_FACTOR_AUTH} from "../store/effects/app-db-effects";
 
 @Injectable()
 export class AuthService {
-    private m_authenticateFlags: AuthenticateFlags;
     private userModel: UserModel;
 
     constructor(private router: Router,
                 @Inject(forwardRef(() => Store)) private store: Store<ApplicationState>,
-                @Inject(forwardRef(() => AppdbAction)) private appdbAction: AppdbAction,
                 @Inject(forwardRef(() => LocalStorage)) private localStorage: LocalStorage,
                 @Inject(forwardRef(() => StoreService)) private storeService: StoreService,
                 private activatedRoute: ActivatedRoute) {
