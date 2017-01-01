@@ -32,7 +32,7 @@ export class AppDbEffects {
         this.parseString = xml2js.parseString;
     }
 
-    @Effect() authTwoFactor$: Observable<Action> = this.actions$
+    @Effect({dispatch: true}) authTwoFactor$: Observable<Action> = this.actions$
         .ofType(EFFECT_TWO_FACTOR_AUTH)
         .switchMap(action => this.authTwoFactor(action))
         .map(authStatus => ({type: EFFECT_AUTH_END, payload: authStatus}));
