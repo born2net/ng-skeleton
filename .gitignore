@@ -40,3 +40,4 @@ src/**/*.map
 #System Files
 .DS_Store
 Thumbs.db
+!server/express-twofactor.js

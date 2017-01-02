@@ -14,7 +14,6 @@
         ca: [c1, c2]
     }, app_https).listen(port, globs.IPLISTEN);
 
-
  Database Postgresql table: token_two_factor
 
  field: token_id:serial (prim key)
