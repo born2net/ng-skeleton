@@ -9,7 +9,7 @@ import {Action, Store} from "@ngrx/store";
 import {ApplicationState} from "../application-state";
 import {Actions, Effect} from "@ngrx/effects";
 import {Observable} from "rxjs";
-import * as _ from 'lodash';
+import * as _ from "lodash";
 import {UserModel} from "../../models/UserModel";
 import {AuthenticateFlags} from "../actions/app-db-actions";
 
@@ -32,8 +32,7 @@ export class AppDbEffects {
         this.parseString = xml2js.parseString;
     }
 
-    @Effect({dispatch: true}) authTwoFactor$: Observable<Action> = this.actions$
-        .ofType(EFFECT_TWO_FACTOR_AUTH)
+    @Effect({dispatch: true}) authTwoFactor$: Observable<Action> = this.actions$.ofType(EFFECT_TWO_FACTOR_AUTH)
         .switchMap(action => this.authTwoFactor(action))
         .map(authStatus => ({type: EFFECT_AUTH_END, payload: authStatus}));
 
@@ -62,8 +61,7 @@ export class AppDbEffects {
             })
     }
 
-    @Effect() updatedTwoFactor$: Observable<Action> = this.actions$
-        .ofType(EFFECT_TWO_FACTOR_UPDATING)
+    @Effect() updatedTwoFactor$: Observable<Action> = this.actions$.ofType(EFFECT_TWO_FACTOR_UPDATING)
         .switchMap(action => this.updatedTwoFactor(action))
         .map(authStatus => ({type: EFFECT_AUTH_END, payload: authStatus}));
 
@@ -96,8 +94,7 @@ export class AppDbEffects {
             })
     }
 
-    @Effect() authUser$: Observable<Action> = this.actions$
-        .ofType(EFFECT_AUTH_START)
+    @Effect() authUser$: Observable<Action> = this.actions$.ofType(EFFECT_AUTH_START)
         .switchMap(action => this.authUser(action))
         .map(authStatus => ({type: EFFECT_AUTH_END, payload: authStatus}));
 

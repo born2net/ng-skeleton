@@ -32,6 +32,7 @@ features:
 - navigation component
 - menu component
 - npm scripts
+- express backend for two factor auth
 
 install
 -----------
