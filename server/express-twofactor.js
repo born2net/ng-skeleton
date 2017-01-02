@@ -29,8 +29,7 @@
 
 module.exports.set = function (app) {
 
-    var ms = require("mslibmod"),
-        co = require('co'),
+    var co = require('co'),
         pgconn = require('pgconn').create(),
         cors = require('cors'),
         base64 = require('base64'),
@@ -47,15 +46,6 @@ module.exports.set = function (app) {
                 var user = req.params.user;
                 var pass = req.params.pass;
                 var statement;
-
-                ms.log('twoFactorCheck connected to server...');
-                var businessId = yield ms.msAuthenticateUser(user, pass);
-                if (businessId == -1)
-                    return res.send({
-                        businessId: -1,
-                        enabled: false
-                    });
-
                 statement = `SELECT enabled FROM token_two_factor WHERE business_id = ${businessId}`;
                 var result = yield pgconn.coquery('dynawebs', pg, statement);
                 if (result.rows[0] == undefined || result.rows["0"].enabled != true) {
@@ -70,12 +60,11 @@ module.exports.set = function (app) {
                     enabled: true
                 });
             } catch (err) {
-                ms.log('twoFactorCheck error 0: ', err, err.stack);
+                console.log('twoFactorCheck error 0: ', err, err.stack);
             }
         }).then(function () {
-            // ms.log('done all');
         }, function (err) {
-            ms.log('twoFactorCheck error 1: ', err, err.stack);
+            console.log('twoFactorCheck error 1: ', err, err.stack);
         });
     });
 
@@ -86,13 +75,9 @@ module.exports.set = function (app) {
                 var pass = req.params.pass;
                 var token = req.params.token;
                 var enable = req.params.enable;
-                // ms.crossdomain(res);
-                var businessId = yield ms.msAuthenticateUser(user, pass);
-                if (businessId == -1)
-                    return res.send({});
 
                 var statement = `SELECT secret32 FROM token_two_factor WHERE business_id = ${businessId}`;
-                var result = yield pgconn.coquery('dynawebs', pg, statement);
+                var result = yield pgconn.coquery('exampledb', pg, statement);
                 if (result.rows[0] == undefined)
                     return res.send({});
 
@@ -114,12 +99,11 @@ module.exports.set = function (app) {
                 return res.send({result: true});
 
             } catch (err) {
-                ms.log('twoFactorCheck error 2: ', err, err.stack);
+                console.log('twoFactorCheck error 2: ', err, err.stack);
             }
         }).then(function () {
-            // ms.log('done all');
         }, function (err) {
-            ms.log('twoFactorCheck error 3: ', err, err.stack);
+            console.log('twoFactorCheck error 3: ', err, err.stack);
         });
     })
 
@@ -130,17 +114,11 @@ module.exports.set = function (app) {
                 var pass = req.params.pass;
                 var statement;
 
-                var businessId = yield ms.msAuthenticateUser(user, pass);
-                if (businessId == -1)
-                    return res.send({result: -1});
-
                 statement = `DELETE FROM token_two_factor WHERE business_id = ${businessId}`;
                 var result = yield pgconn.coquery('dynawebs', pg, statement);
 
                 var secret = speakeasy.generateSecret();
                 var svg_string = qr.imageSync(secret.otpauth_url, {type: 'svg'});
-                // var qr_svg = qr.image(secret.otpauth_url, {type: 'svg'});
-                // qr_svg.pipe(require('fs').createWriteStream('qr.svg'));
 
                 statement = `INSERT INTO token_two_factor (business_id, enabled, otpauth_url, hex, ascii, secret32) 
                         VALUES (${businessId}, false, '${secret.otpauth_url}', '${secret.hex}', '${secret.ascii}', '${secret.base32}')`;
@@ -148,12 +126,11 @@ module.exports.set = function (app) {
                 return res.send(svg_string);
 
             } catch (err) {
-                ms.log('twoFactorCheck error 2: ', err, err.stack);
+                console.log('twoFactorCheck error 2: ', err, err.stack);
             }
         }).then(function () {
-            // ms.log('done all');
         }, function (err) {
-            ms.log('twoFactorCheck error 3: ', err, err.stack);
+            console.log('twoFactorCheck error 3: ', err, err.stack);
         });
     })
 };
