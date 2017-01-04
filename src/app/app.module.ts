@@ -71,7 +71,7 @@ export var providing = [CommBroker, AUTH_PROVIDERS,
 ];
 
 
-var decelerations = [AppComponent, AutoLogin, LoginPanel, Logo, App1, Account, Dashboard, Privileges, Tabs, Tab, Sliderpanel, Slideritem, Orders, Logout, InputEdit, Twofactor, NgMenu, NgMenuItem, ImgLoader, BlurForwarder];
+var decelerations = [AppComponent, AutoLogin, LoginPanel, Logo, App1, Account, Dashboard, Privileges, Tabs, Tab, Sliderpanel, Slideritem, Orders, Logout, InputEdit, Twofactor, NgMenu, NgMenuItem, ImgLoader, BlurForwarder, ];
 
 @NgModule({
     declarations: [decelerations],
