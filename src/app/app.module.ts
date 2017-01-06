@@ -46,7 +46,6 @@ import {InputEdit} from "../comps/inputedit/InputEdit";
 import {Twofactor} from "../comps/twofactor/Twofactor";
 import "hammerjs";
 
-
 export var providing = [CommBroker, AUTH_PROVIDERS,
     {
         provide: LocalStorage,
