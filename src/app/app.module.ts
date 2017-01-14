@@ -2,7 +2,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule, JsonpModule} from "@angular/http";
-import {AlertModule, ModalModule} from "ng2-bootstrap/ng2-bootstrap";
+import {AlertModule, ModalModule} from "ng2-bootstrap";
 import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
 import {AppComponent} from "./app.component";
 import {LocalStorage} from "../services/LocalStorage";
@@ -101,11 +101,11 @@ var decelerations = [AppComponent, AutoLogin, LoginPanel, Logo, App1, Account, D
             titleClass: ""
         }),
         MsLibModule.forRoot(),
+        AlertModule.forRoot(),
+        DropdownModule.forRoot(),
+        AccordionModule.forRoot(),
         JsonpModule,
-        AlertModule,
         ModalModule,
-        DropdownModule,
-        AccordionModule,
         TreeModule,
         NgStringPipesModule,
         InputTextModule,
