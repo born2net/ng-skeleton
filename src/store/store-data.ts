@@ -1,6 +1,16 @@
-import {Map, List} from 'immutable';
+import {Map} from "immutable";
 import {UserModel} from "../models/UserModel";
 import {AuthenticateFlags} from "./actions/app-db-actions";
+import {ActionReducer, combineReducers} from "@ngrx/store";
+import {ApplicationState} from "./application-state";
+import {storeFreeze} from "ngrx-store-freeze";
+import {compose} from "@ngrx/core";
+import {appDb} from "../store/reducers/app-db-reducer";
+import {storeData} from "../store/reducers/uiStoreDataReducer";
+
+const reducers = {storeData, appDb};
+export const developmentReducer: ActionReducer<ApplicationState> = compose(storeFreeze, combineReducers)(reducers);
+export const productionReducer: ActionReducer<ApplicationState> = combineReducers(reducers);
 
 export interface StoreData {
     participants: { [key: number]: any };
@@ -46,3 +56,4 @@ export const INITIAL_APP_DB: IAppDb = {
     appBaseUrlUser: '',
     appBaseUrlCloud: ''
 };
+
