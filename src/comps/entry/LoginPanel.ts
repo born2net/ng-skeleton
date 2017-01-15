@@ -15,13 +15,13 @@ import {ActivatedRoute} from "@angular/router";
 import {LocalStorage} from "../../services/LocalStorage";
 import {AuthService} from "../../services/AuthService";
 import {Map} from "immutable";
-import {Compbaser} from "../compbaser/Compbaser";
 import {ToastsManager} from "ng2-toastr";
 import {ApplicationState} from "../../store/application-state";
 import {Store} from "@ngrx/store";
 import {UserModel} from "../../models/UserModel";
 import {AuthenticateFlags} from "../../store/actions/app-db-actions";
 import {NgmslibService} from "ng-mslib/dist/services/ngmslib.service";
+import {Compbaser} from "ng-mslib";
 
 @Injectable()
 @Component({

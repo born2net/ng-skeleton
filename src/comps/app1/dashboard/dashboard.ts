@@ -1,9 +1,9 @@
 import {Component, ChangeDetectionStrategy} from "@angular/core";
-import {Compbaser} from "../../compbaser/Compbaser";
 import {ApplicationState} from "../../../store/application-state";
 import {Store} from "@ngrx/store";
 import {UserModel} from "../../../models/UserModel";
 import {Observable} from "rxjs";
+import {Compbaser} from "ng-mslib";
 
 @Component({
     selector: 'Dashboard',

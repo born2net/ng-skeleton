@@ -1,6 +1,6 @@
 import {Component, ChangeDetectionStrategy, Input} from "@angular/core";
-import {Compbaser} from "../compbaser/Compbaser";
 import {NgMenu} from "./ng-menu";
+import {Compbaser} from "ng-mslib";
 
 @Component({
     selector: 'ng-menu-item',

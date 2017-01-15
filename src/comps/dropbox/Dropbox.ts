@@ -9,7 +9,7 @@ import {LocalStorage} from "../../services/LocalStorage";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {TreeNode} from "primeng/primeng";
-import {Compbaser} from "../compbaser/Compbaser";
+import {Compbaser} from "ng-mslib";
 
 @Component({
     selector: 'Dropbox',

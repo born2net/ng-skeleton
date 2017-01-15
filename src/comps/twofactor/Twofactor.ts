@@ -2,13 +2,13 @@ import {Component, ChangeDetectionStrategy, ElementRef, ViewChild, ChangeDetecto
 import {FormControl, FormGroup, FormBuilder} from "@angular/forms";
 import * as _ from "lodash";
 import {LocalStorage} from "../../services/LocalStorage";
-import {Compbaser} from "../compbaser/Compbaser";
 import {Store} from "@ngrx/store";
 import {AppdbAction, AuthenticateFlags} from "../../store/actions/app-db-actions";
 import {ApplicationState} from "../../store/application-state";
 import {UserModel} from "../../models/UserModel";
 import {Map} from "immutable";
 import {EFFECT_TWO_FACTOR_UPDATING} from "../../store/effects/app-db-effects";
+import {Compbaser} from "ng-mslib";
 
 @Component({
     selector: 'Twofactor',

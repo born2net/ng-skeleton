@@ -1,9 +1,5 @@
 import {Component, ChangeDetectionStrategy} from "@angular/core";
-import {Compbaser} from "../compbaser/Compbaser";
-import {Router} from "@angular/router";
-import {Store} from "@ngrx/store";
-import {ApplicationState} from "../../store/application-state";
-import {Observable} from "rxjs";
+import {Compbaser} from "ng-mslib";
 
 @Component({
     selector: 'AutoLogin',
