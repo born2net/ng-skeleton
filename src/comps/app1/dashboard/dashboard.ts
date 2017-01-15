@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy} from "@angular/core";
+import {Component, ChangeDetectionStrategy, Inject} from "@angular/core";
 import {ApplicationState} from "../../../store/application-state";
 import {Store} from "@ngrx/store";
 import {UserModel} from "../../../models/UserModel";
@@ -15,10 +15,9 @@ import {Compbaser} from "ng-mslib";
            `,
 })
 export class Dashboard extends Compbaser {
-
     private userModel$: Observable<UserModel>;
 
-    constructor(private store: Store<ApplicationState>) {
+    constructor(private store: Store<ApplicationState>, @Inject('OFFLINE_ENV') private offlineEnv) {
         super();
         this.userModel$ = this.store.select(store => store.appDb.userModel);
     }

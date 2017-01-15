@@ -60,7 +60,7 @@ export var providing = [CommBroker, AUTH_PROVIDERS, NgmslibService,
     },
     {
         provide: "OFFLINE_ENV",
-        useValue: false
+        useValue:  window['offlineDevMode']
     }
 ];
 
