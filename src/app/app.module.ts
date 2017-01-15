@@ -47,8 +47,9 @@ import {Twofactor} from "../comps/twofactor/Twofactor";
 import "hammerjs";
 import {compose} from "@ngrx/core";
 import {MsLibModule} from "ng-mslib/dist/mslib.module";
+import {NgmslibService} from "ng-mslib/dist/services/ngmslib.service";
 
-export var providing = [CommBroker, AUTH_PROVIDERS,
+export var providing = [CommBroker, AUTH_PROVIDERS, NgmslibService,
     {
         provide: LocalStorage,
         useClass: LocalStorage
@@ -61,10 +62,6 @@ export var providing = [CommBroker, AUTH_PROVIDERS,
         provide: AppdbAction,
         useClass: AppdbAction
     },
-    // {
-    //     provide: "DEV_ENV",
-    //     useValue: Ngmslib.DevMode()
-    // },
     {
         provide: "OFFLINE_ENV",
         useValue: false
@@ -134,8 +131,10 @@ export function appReducer(state: any = INITIAL_APPLICATION_STATE, action: any) 
     providers: [providing],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {
-    constructor() {
+    constructor(ngmslibService:NgmslibService) {
+        console.log(`running in dev mode: ${ngmslibService.inDevMode()}`);
     }
 
 }
