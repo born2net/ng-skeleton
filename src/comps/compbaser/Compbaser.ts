@@ -1,5 +1,4 @@
 import {Subscriber} from "rxjs";
-import {Ngmslib} from "ng-mslib";
 // import {
 //     Subscriber,
 //     Subject,
@@ -15,8 +14,10 @@ export class Compbaser {
     protected inDevMode:boolean = false;
 
     constructor() {
-        this.inDevMode = Ngmslib.DevMode();
-        this.me = Ngmslib.GetCompSelector(this.constructor);
+        //todo: fix
+        // this.inDevMode = Ngmslib.DevMode();
+        // this.me = Ngmslib.GetCompSelector(this.constructor);
+        this.me = 'todo fix'
     }
 
     protected cancelOnDestroy(i_function: any): void {

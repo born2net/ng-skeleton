@@ -16,12 +16,12 @@ import {LocalStorage} from "../../services/LocalStorage";
 import {AuthService} from "../../services/AuthService";
 import {Map} from "immutable";
 import {Compbaser} from "../compbaser/Compbaser";
-import {Ngmslib} from "ng-mslib";
 import {ToastsManager} from "ng2-toastr";
 import {ApplicationState} from "../../store/application-state";
 import {Store} from "@ngrx/store";
 import {UserModel} from "../../models/UserModel";
 import {AuthenticateFlags} from "../../store/actions/app-db-actions";
+import {NgmslibService} from "ng-mslib/dist/services/ngmslib.service";
 
 @Injectable()
 @Component({
@@ -111,7 +111,8 @@ export class LoginPanel extends Compbaser {
     private loginState: string = '';
     private userModel: UserModel;
 
-    constructor(private store: Store<ApplicationState>,
+    constructor(private ngmslibService:NgmslibService,
+                private store: Store<ApplicationState>,
                 private renderer: Renderer,
                 private toast: ToastsManager,
                 private activatedRoute: ActivatedRoute,
@@ -159,8 +160,8 @@ export class LoginPanel extends Compbaser {
         this.cancelOnDestroy(
             this.activatedRoute.params.subscribe(params => {
                 if (params['twoFactor']) {
-                    this.m_user = Ngmslib.Base64().decode(params['user']);
-                    this.m_pass = Ngmslib.Base64().decode(params['pass']);
+                    this.m_user = this.ngmslibService.base64().decode(params['user']);
+                    this.m_pass = this.ngmslibService.base64().decode(params['pass']);
                     this.m_showTwoFactor = true;
                 }
             })

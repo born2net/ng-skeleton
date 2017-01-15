@@ -4,7 +4,6 @@ import {Router, ActivatedRoute, NavigationEnd} from "@angular/router";
 import {CommBroker} from "../services/CommBroker";
 import {Title} from "@angular/platform-browser";
 import {ToastsManager} from "ng2-toastr";
-import {Ngmslib} from "ng-mslib";
 import {Consts} from "../Conts";
 import {Observable} from "rxjs";
 import * as packageJson from "../../package.json";
@@ -40,8 +39,7 @@ export class AppComponent {
         Observable.fromEvent(window, 'resize').debounceTime(250).subscribe(() => {
             this.appResized();
         });
-        Ngmslib.GlobalizeStringJS();
-        console.log(StringJS('app-loaded-and-ready').humanize().s);
+
     }
 
     ngOnInit() {

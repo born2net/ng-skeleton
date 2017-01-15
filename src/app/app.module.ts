@@ -16,7 +16,6 @@ import {Logout} from "../comps/logout/Logout";
 import {Orders} from "../comps/app1/orders/Orders";
 import {Logo} from "../comps/logo/Logo";
 import {BlurForwarder} from "../comps/blurforwarder/BlurForwarder";
-// import {Ngmslib} from "ng-mslib";
 import {storeFreeze} from 'ngrx-store-freeze';
 import {ImgLoader} from "../comps/imgloader/ImgLoader";
 import {ChartModule} from "angular2-highcharts";
@@ -133,7 +132,9 @@ export function appReducer(state: any = INITIAL_APPLICATION_STATE, action: any) 
 })
 
 export class AppModule {
-    constructor(ngmslibService:NgmslibService) {
+    constructor(private ngmslibService:NgmslibService) {
         console.log(`running in dev mode: ${ngmslibService.inDevMode()}`);
+        this.ngmslibService.globalizeStringJS();
+        console.log(StringJS('app-loaded-and-ready').humanize().s);
     }
 }

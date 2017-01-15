@@ -5,19 +5,19 @@ import {StoreService} from "./StoreService";
 import "rxjs/add/observable/fromPromise";
 import {Observable} from "rxjs/Observable";
 import {Map} from "immutable";
-import {Ngmslib} from "ng-mslib";
 import * as _ from "lodash";
 import {Store} from "@ngrx/store";
 import {ApplicationState} from "../store/application-state";
 import {AuthenticateFlags} from "../store/actions/app-db-actions";
 import {UserModel} from "../models/UserModel";
 import {EFFECT_AUTH_START, EFFECT_TWO_FACTOR_AUTH} from "../store/effects/app-db-effects";
+import {NgmslibService} from "ng-mslib";
 
 @Injectable()
 export class AuthService {
     private userModel: UserModel;
 
-    constructor(private router: Router,
+    constructor(private router: Router, private ngmslibService:NgmslibService,
                 @Inject(forwardRef(() => Store)) private store: Store<ApplicationState>,
                 @Inject(forwardRef(() => LocalStorage)) private localStorage: LocalStorage,
                 @Inject(forwardRef(() => StoreService)) private storeService: StoreService,
@@ -39,8 +39,8 @@ export class AuthService {
                     break;
                 }
                 case AuthenticateFlags.TWO_FACTOR_ENABLED: {
-                    var user = Ngmslib.Base64().encode(this.userModel.getUser());
-                    var pass = Ngmslib.Base64().encode(this.userModel.getPass());
+                    var user = this.ngmslibService.base64().encode(this.userModel.getUser());
+                    var pass = this.ngmslibService.base64().encode(this.userModel.getPass());
                     this.router.navigate([`/UserLogin/twoFactor/${user}/${pass}`])
                     break;
                 }
@@ -86,7 +86,7 @@ export class AuthService {
             if (!_.isUndefined(id)) {
                 id = `${id}=`;
                 try {
-                    credentials = Ngmslib.Base64().decode(id);
+                    credentials = this.ngmslibService.base64().decode(id);
                     var local = this.activatedRoute.snapshot.queryParams['local'];
                     var credentialsArr = credentials.match(/user=(.*),pass=(.*)/);
                     i_user = credentialsArr[1];
