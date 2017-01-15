@@ -136,5 +136,4 @@ export class AppModule {
     constructor(ngmslibService:NgmslibService) {
         console.log(`running in dev mode: ${ngmslibService.inDevMode()}`);
     }
-
 }
