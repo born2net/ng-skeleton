@@ -6,7 +6,6 @@ import {AlertModule, ModalModule} from "ng2-bootstrap";
 import {Ng2Bs3ModalModule} from "ng2-bs3-modal/ng2-bs3-modal";
 import {AppComponent} from "./app.component";
 import {LocalStorage} from "../services/LocalStorage";
-// import {MsLibModule} from "ng-mslib/dist/mslib.module";
 import {ToastModule} from "ng2-toastr";
 import {DropdownModule, AccordionModule} from "ng2-bootstrap";
 import {TreeModule, InputTextModule, SelectButtonModule, DropdownModule as DropdownModulePrime} from "primeng/primeng";
@@ -47,6 +46,7 @@ import {InputEdit} from "../comps/inputedit/InputEdit";
 import {Twofactor} from "../comps/twofactor/Twofactor";
 import "hammerjs";
 import {compose} from "@ngrx/core";
+import {MsLibModule} from "ng-mslib/dist/mslib.module";
 
 export var providing = [CommBroker, AUTH_PROVIDERS,
     {
@@ -117,7 +117,7 @@ export function appReducer(state: any = INITIAL_APPLICATION_STATE, action: any) 
             messageClass: "",
             titleClass: ""
         }),
-        // MsLibModule.forRoot(),
+        MsLibModule.forRoot({a:1}),
         AlertModule.forRoot(),
         DropdownModule.forRoot(),
         AccordionModule.forRoot(),

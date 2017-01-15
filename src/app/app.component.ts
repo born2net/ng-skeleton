@@ -40,7 +40,6 @@ export class AppComponent {
         Observable.fromEvent(window, 'resize').debounceTime(250).subscribe(() => {
             this.appResized();
         });
-        console.log(1);
         Ngmslib.GlobalizeStringJS();
         console.log(StringJS('app-loaded-and-ready').humanize().s);
     }
