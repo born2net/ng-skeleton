@@ -12,7 +12,7 @@
     "x_sw": "sw-precache --root=dist --config=sw-precache-config.js",
     "x_bump": "gulp x_bump",
     "cp module": "cp ./node_modules/ng-mslib/src/myng-component.ts ./node_modules/ng-mslib/dist/",
-    "hmr": "ng serve --port 4203 --aot false --hmr -e=hmr",
+    "hmr": "ng serve --port 4203 --hmr -e=hmr",
     "dev": "ng serve --port 4203 --aot false",
     "reg_release": "rm -r -f ./dist && npm run x_bump && npm run x_prod && npm run x_rsync",
     "pwa_release": "rm -r -f ./dist && npm run x_bump && npm run x_prod && npm run x_sw && npm run x_rsync",
@@ -70,8 +70,8 @@
     "zone.js": "^0.7.1"
   },
   "devDependencies": {
-    "@angular/language-service": "^2.4.3",
     "@angular/compiler-cli": "2.4.3",
+    "@angular/language-service": "^2.4.3",
     "@angularclass/hmr": "^1.2.2",
     "@types/hammerjs": "^2.0.33",
     "@types/immutable": "^3.8.6",
@@ -97,12 +97,13 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.2.4",
+    "ngrx-store-freeze": "^0.1.6",
     "rsync": "^0.5.0",
     "run-sequence": "^1.2.2",
+    "sw-precache": "4.2.1",
     "ts-node": "1.2.1",
     "tslint": "3.13.0",
     "typescript": "~2.0.3",
-    "webdriver-manager": "10.2.5",
-    "sw-precache": "4.2.1"
+    "webdriver-manager": "10.2.5"
   }
 }
