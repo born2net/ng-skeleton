@@ -47,16 +47,16 @@ import "hammerjs";
 
 export var providing = [CommBroker, AUTH_PROVIDERS, NgmslibService,
     {
-        provide: LocalStorage,
-        useClass: LocalStorage
-    },
-    {
         provide: StoreService,
         useClass: StoreService
     },
     {
         provide: AppdbAction,
         useClass: AppdbAction
+    },
+    {
+        provide: LocalStorage,
+        useClass: LocalStorage
     },
     {
         provide: "OFFLINE_ENV",

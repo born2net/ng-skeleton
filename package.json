@@ -1,6 +1,6 @@
 {
   "name": "ng-skeleton",
-  "version": "1.5.19",
+  "version": "1.5.21",
   "license": "Modified GPL (see readme.md)",
   "angular-cli": {},
   "scripts": {
@@ -15,7 +15,7 @@
     "hmr": "ng serve --port 4203 --hmr -e=hmr",
     "dev": "ng serve --port 4203 --aot false",
     "reg_release": "rm -r -f ./dist && npm run x_bump && npm run x_prod && npm run x_rsync",
-    "pwa_release": "rm -r -f ./dist && npm run x_bump && npm run x_prod && npm run x_sw && npm run x_rsync",
+    "pwa_release": "rm -r -f ./dist && npm run x_bump && npm run x_prod && npm run x_sw",
     "disk-build": "ng build && npm run sw",
     "disk-serve": "cd dist && live-server --port=4200 --host=localhost --entry-file=/index.html"
   },
